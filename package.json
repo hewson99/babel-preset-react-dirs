@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-react-dirs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "directives in react",
   "main": "./index.js",
   "keywords": [
@@ -13,4 +13,3 @@
   "license": "MIT",
   "homepage": "https://github.com/ilingov/babel-preset-react-dirs#readme"
 }
-
