@@ -75,10 +75,11 @@ if you are using ESlint, ESLint doesn't know you are doing a replacement in your
 
 ```
 // .eslintrc.json
+
 {
   "globals": {
-    "fval": "readonly"
-    "fkey": "readonly"
+    "fval": "readonly",
+    "fkey": "readonly",
     "fidx": "readonly"
   }
 }
