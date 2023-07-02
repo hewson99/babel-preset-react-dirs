@@ -1,34 +1,60 @@
-## Basic Example
+This is a simple plugin that allows you to mimic Vue's instructions in React
 
 
+## Installation
 
+```
+npm install babel-preset-react-dirs
+```
+
+## webpack-based project
+
+create the __babel.config.js__ like this 
 
 ```js
-presets: [
-  [
-    require.resolve('babel-preset-react-dirs'),
-    {
-      // optional
-      alias: {
-        for: 'new-name', // if needed 
-        'if': 'new-name' // if needed
-        'else-if': 'new-name' // if needed
-      }
-    }
-  ]
-]
+// babel.config.js
 
+module.exports = {
+  presets: ['react-dirs']
+}
+```
+
+## vite-based project
+
+create the __vite.config.js__ like this 
+
+```js
+// vite.config.js
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react({
+    babel: {
+      presets: ['react-dirs']
+    }
+  })],
+})
+
+```
+
+
+## Basic Example
+
+```js
 function App() {
   const [ls, setLs] = useState([2,4,5])
   const [obj, setObj] = useState({name: 'Tom', age: 28})
   const [flag, setFlag] = useState({f: false, t: true})
   return  <>
-      <p for={ (val, key, idx) in ls } key={key} b={key}>{val}--{key}---{idx}</p>
+      <p for={ (fval, fkey, fidx) in ls } key={fkey}>{fval}--{fkey}---{fidx}</p>
       // 2--0---0
       // 4--1---1
       // 5--2---2
 
-      <p for={ (val, key, idx) in obj } key={key} b={key}>{val}--{key}---{idx}</p>
+      <p for={ (fval, fkey, fidx) in obj } key={fkey}>{fval}--{fkey}---{fidx}</p>
       // Tom--name---0
       // 28--age---1
 
@@ -41,5 +67,19 @@ function App() {
     </>
 }
 
+```
 
+## note 
+if you are using ESlint, ESLint doesn't know you are doing a replacement in your plugin so you might want to instruct the tool that __fval, fkey and fidx__ will eventually be defined. see [more detail](https://eslint.org/docs/latest/use/configure/language-options#specifying-globals)
+
+
+```
+// .eslintrc.json
+{
+  "globals": {
+    "fval": "readonly"
+    "fkey": "readonly"
+    "fidx": "readonly"
+  }
+}
 ```
