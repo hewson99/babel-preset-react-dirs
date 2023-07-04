@@ -1,4 +1,4 @@
-This is a simple plugin that allows you to mimic Vue's instructions in React
+This is a simple plugin that allows you to mimic Vue's directives in React
 
 
 ## Installation
